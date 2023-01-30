@@ -1,0 +1,7 @@
+{"plugins": [
+    ["rewrite-require", {
+      "aliases": {
+        "joi": "joi-react-native"
+      }
+    }]
+  ]}
