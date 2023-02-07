@@ -1,8 +1,8 @@
 import axios from 'axios';
-const root_url = 'https:cpc.custodianplc.com.ng/api/';
+const root_url = 'https://cpc.custodianplc.com.ng/api/';
 
 export const emailVerification = async (email) => {
-  const res = await axios.get(root_url + 'residents/search?emai=' + email);
+  const res = await axios.get(root_url + 'residents/search?email=' + email);
 
   const user = res.data;
 

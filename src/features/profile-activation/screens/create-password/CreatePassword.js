@@ -19,6 +19,7 @@ import { Form, Formik } from "formik";
 import { useNavigation } from "@react-navigation/native";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 import { passwordSchema } from "../../../../validators/form.validate";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const { primary } = Colors;
 
@@ -28,8 +29,8 @@ const CreatePassword = () => {
     <KeyboardAvoidingWrapper>
       <>
         <GetStartedImage source={image} resizeMode="contain" height="425" />
-        <Container mt="-10">
-          <Paragraph color={primary} size="25" fontFamily="PoppinsBold">
+        <Container mt="10">
+          <Paragraph color={primary} size="35" fontFamily="PoppinsBold">
             Create Password
           </Paragraph>
           <Formik
@@ -38,6 +39,7 @@ const CreatePassword = () => {
               await passwordSchema
                 .validate(values)
                 .then((valid) => {
+                  AsyncStorage.setItem('@userPassword', valid.password);
                   navigation.navigate("login");
                 })
                 .catch((err) => {

@@ -79,7 +79,11 @@ const Navbar = ({ title }) => {
               </Paragraph>
             </MenuListContainer>
             <Divider />
-            <MenuListContainer>
+            <MenuListContainer
+              onPress={() => {
+                navigation.navigate('login', { password: '' });
+              }}
+            >
               <Icon name='sign-out' size={20} type='font-awesome' />
               <Paragraph size='16' fontFamily='Poppins' ml='10'>
                 Logout

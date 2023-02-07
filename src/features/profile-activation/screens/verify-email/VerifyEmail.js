@@ -29,6 +29,8 @@ import { emailSchema } from '../../../../validators/form.validate';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { setResident } from '../../../../lib/redux/slices/navSlice';
 
 const { primary } = Colors;
 
@@ -56,6 +58,8 @@ const VerifyEmail = () => {
   useEffect(() => {
     get();
   }, []);
+
+  const dispatch = useDispatch();
   return (
     <Background>
       <KeyboardAvoidingWrapper>
@@ -92,7 +96,11 @@ const VerifyEmail = () => {
                   .validate(values)
                   .then(async () => {
                     const validUser = await emailVerification(values.email);
+                    // axios
+                    //   .get('https://dummyjson.com/products/1')
+                    //   .then((res) => console.log(res));
                     console.log(validUser);
+
                     if (!validUser) {
                       Toast.show({
                         type: 'error',
@@ -103,12 +111,26 @@ const VerifyEmail = () => {
                       validUser &&
                       validUser.activation_stage.toLowerCase() === 'initial'
                     ) {
-                      navigation.navigate('verify-passcode');
+                      AsyncStorage.setItem(
+                        '@userEmail',
+                        validUser.contacts[0].value
+                      );
+
+                      dispatch(setResident(validUser));
+
+                      navigation.navigate('verify-passcode', {
+                        passcode: validUser.activation_pin,
+                      });
                     } else {
-                      navigation.navigate('login');
+                      Toast.show({
+                        type: 'error',
+                        text1: 'Validation Error',
+                        text2: 'Email not registered',
+                      });
                     }
                   })
                   .catch((err) => {
+                    console.log(err);
                     Toast.show({
                       type: 'error',
                       text1: 'Validation Error',

@@ -110,7 +110,7 @@ export const InputContainer = styled.View`
   margin-top: ${(props) => (props.mt ? `${props.mt}px` : '20px')};
   margin-bottom: ${(props) => (props.mb ? `${props.mb}px` : '0px')};
   width: 100%;
-  height: ${Platform.OS == 'ios' ? `50px` : `${50 * 0.75}px`};
+  height: ${Platform.OS == 'ios' ? `50px` : `${70 * 0.75}px`};
   display: flex;
   flex-direction: row;
   background: ${(props) => (props.background ? props.background : '#fff')};

@@ -12,6 +12,7 @@ import BillsAndUtility from './screens/BillsAndUtility/BillsAndUtility';
 const { primary } = Colors;
 const Dashboard = () => {
   const Tab = createBottomTabNavigator();
+
   return (
     <Tab.Navigator
       initialRouteName='home'

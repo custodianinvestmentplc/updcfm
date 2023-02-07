@@ -1,9 +1,14 @@
 {
     "build": {
       "preview": {
+        "channel": "staging",
+        "distribution": "internal",
         "android": {
           "buildType": "apk"
-        }
+        },  
+        "ios": {
+        "enterpriseProvisioning": "universal"
+      }
       },
       "preview2": {
         "android": {

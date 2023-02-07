@@ -33,7 +33,7 @@ const GetStarted = () => {
           </Paragraph>
           <FullButton
             background='#fff'
-            onPress={() => navigation.navigate('dashboard')}
+            onPress={() => navigation.navigate('verify-email')}
           >
             <CenterContent>
               <ButtonText color={primary}>Get Started</ButtonText>
