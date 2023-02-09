@@ -26,6 +26,7 @@
     "expo-updates": "~0.15.6",
     "formik": "^2.2.9",
     "joi-react-native": "^3.0.0",
+    "js-base64": "^3.7.5",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-hot-toast": "^2.4.0",

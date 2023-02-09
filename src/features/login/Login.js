@@ -64,6 +64,8 @@ const Login = ({ route }) => {
               password: '',
             }}
             onSubmit={async (values) => {
+              console.log(userPassword);
+              console.log(userEmail);
               await loginSchema
                 .validate(values)
                 .then(async (valid) => {

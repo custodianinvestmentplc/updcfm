@@ -121,6 +121,14 @@ const VerifyEmail = () => {
                       navigation.navigate('verify-passcode', {
                         passcode: validUser.activation_pin,
                       });
+                    } else if (
+                      validUser &&
+                      validUser.activation_stage.toLowerCase() === 'activated'
+                    ) {
+                      dispatch(setResident(validUser));
+                      navigation.navigate('login');
+
+                      // navigation.navigate('login');
                     } else {
                       Toast.show({
                         type: 'error',

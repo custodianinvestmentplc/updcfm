@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Base64 } from 'js-base64';
 const root_url = 'https://cpc.custodianplc.com.ng/api/';
 
 export const emailVerification = async (email) => {
@@ -19,4 +20,24 @@ export const passcodeVerification = async (email, passcode) => {
     },
   };
   const res = await axios.post(root_url + 'residents/log-in');
+};
+
+export const residentCreatePassword = async (id, password) => {
+  const payload = Base64.encode(password);
+
+  const header = {
+    headers: {
+      authorization: `bearer ${payload}`,
+    },
+  };
+
+  const res = await axios.post(
+    root_url + 'residents/create-password',
+    { id },
+    header
+  );
+
+  const { data } = res;
+
+  return data;
 };
