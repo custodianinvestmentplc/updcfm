@@ -73,6 +73,15 @@ export const FullButton = styled.TouchableOpacity`
   border-radius: 8px;
   margin-top: ${Platform.OS == 'ios' ? `10px` : `${10 * 0.75}px`};
 `;
+export const FullDisableButton = styled.View`
+min-width: 100%;
+height: 50px;
+background: ${(props) => (props.background ? props.background : primary)};
+border-radius: 8px;
+margin-top: ${Platform.OS == 'ios' ? `10px` : `${10 * 0.75}px`};
+`;
+
+
 
 export const ButtonText = styled.Text`
   font-family: PoppinsSemiBold;

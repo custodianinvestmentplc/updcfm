@@ -6,14 +6,16 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Background,
   ButtonText,
   CenterContent,
   Container,
   FullButton,
+  FullDisableButton,
   FullScreenContainer,
   HalfScreenContainer,
   Input,
@@ -39,6 +41,9 @@ import axios from 'axios';
 const { primary } = Colors;
 const Passcode = ({ route }) => {
   const navigation = useNavigation();
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const firstTextInputRef = useRef(null);
   const secondTextInputRef = useRef(null);
   const thirdTextInputRef = useRef(null);
@@ -91,12 +96,14 @@ const Passcode = ({ route }) => {
                   values.pinThree +
                   values.pinFour +
                   values.pinFive;
+                  setIsLoading(true);
                 await passcodeSchema
                   .validate({ passcode: code })
                   .then((valid) => {
                     console.log(valid);
                     if (valid.passcode === passcode) {
                       navigation.navigate('create-password');
+                      setIsLoading(false);
                     } else {
                       Toast.show({
                         type: 'error',
@@ -104,6 +111,7 @@ const Passcode = ({ route }) => {
                         text2:
                           'Invalid activation pin, try again or contact administrator.',
                       });
+                      setIsLoading(false);
                     }
                   })
                   .catch((err) => {
@@ -112,6 +120,7 @@ const Passcode = ({ route }) => {
                       text1: 'Validation Error',
                       text2: err.message,
                     });
+                    setIsLoading(false);
                   });
               }}
             >
@@ -219,11 +228,20 @@ const Passcode = ({ route }) => {
                     />
                   </PasscodeInputContainer>
                   <Container>
-                    <FullButton onPress={handleSubmit} background='#fff'>
-                      <CenterContent>
-                        <ButtonText color={primary}>Done</ButtonText>
-                      </CenterContent>
-                    </FullButton>
+                    {isLoading?(
+                      <FullDisableButton>
+                        <CenterContent>
+                          <ActivityIndicator />
+                        </CenterContent>
+                      </FullDisableButton>
+                    ):(
+                      
+                      <FullButton onPress={handleSubmit} background='#fff'>
+                        <CenterContent>
+                          <ButtonText color={primary}>Done</ButtonText>
+                        </CenterContent>
+                      </FullButton>
+                    )}
                   </Container>
                 </>
               )}

@@ -6,6 +6,7 @@ import {
   CenterContent,
   Container,
   FullButton,
+  FullDisableButton,
   Input,
   InputContainer,
   InputIcon,
@@ -26,6 +27,7 @@ import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
 import { emailVerification } from '../../hooks/profileActivation.hook';
+import { ActivityIndicator } from 'react-native';
 const { primary } = Colors;
 
 let userEmail = '';
@@ -40,7 +42,9 @@ AsyncStorage.getItem('@userPassword').then((password) => {
 });
 
 const Login = ({ route }) => {
+  const [isLoading, setIsLoading] = useState(false);
   let logOutPassword = route.params && route.params.password;
+
   if (route.params != undefined) {
     console.log(route);
     logOutPassword = route.params.password;
@@ -64,6 +68,7 @@ const Login = ({ route }) => {
               password: '',
             }}
             onSubmit={async (values) => {
+              setIsLoading(true)
               console.log(userPassword);
               console.log(userEmail);
               await loginSchema
@@ -75,12 +80,15 @@ const Login = ({ route }) => {
                     values.password === userPassword
                   ) {
                     navigation.navigate('dashboard');
+                    setIsLoading(false);
                   } else {
                     Toast.show({
                       type: 'error',
                       text1: 'Validation Error',
                       text2: 'Something went wrong, try again.',
                     });
+
+                    setIsLoading(false)
                   }
                 })
                 .catch((err) => {
@@ -89,6 +97,7 @@ const Login = ({ route }) => {
                     text1: 'Validation Error',
                     text2: err.message,
                   });
+                  setIsLoading(false)
                 });
             }}
           >
@@ -125,11 +134,20 @@ const Login = ({ route }) => {
                     </Paragraph>
                   </Link>
                 </LinkContainer>
-                <FullButton onPress={handleSubmit}>
-                  <CenterContent>
-                    <ButtonText>Login</ButtonText>
-                  </CenterContent>
-                </FullButton>
+                {isLoading?(
+                  <FullDisableButton>
+                    <CenterContent>
+                      <ActivityIndicator />    
+                    </CenterContent>
+                  </FullDisableButton>
+                ):(
+
+                  <FullButton onPress={handleSubmit}>
+                    <CenterContent>
+                      <ButtonText>Login</ButtonText>
+                    </CenterContent>
+                  </FullButton>
+                )}
               </>
             )}
           </Formik>

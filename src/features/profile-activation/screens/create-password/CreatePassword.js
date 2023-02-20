@@ -5,6 +5,7 @@ import {
   CenterContent,
   Container,
   FullButton,
+  FullDisableButton,
   FullScreenContainer,
   HalfScreenContainer,
   Input,
@@ -23,12 +24,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { residentCreatePassword } from '../../../../hooks/profileActivation.hook';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectResident } from '../../../../lib/redux/slices/navSlice';
+import { useState } from 'react';
+import { ActivityIndicator } from 'react-native';
 
 const { primary } = Colors;
 
 const CreatePassword = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const resident = useSelector(selectResident);
   return (
@@ -42,6 +47,7 @@ const CreatePassword = () => {
           <Formik
             initialValues={{ password: '', confirmPassword: '' }}
             onSubmit={async (values) => {
+              setIsLoading(true);
               await passwordSchema
                 .validate(values)
                 .then(async (valid) => {
@@ -54,15 +60,17 @@ const CreatePassword = () => {
                           type: 'success',
                           text1: 'Profile Activation successful.',
                         });
+                        setIsLoading(false);
                       } else {
                         Toast.show({
                           type: 'error',
                           text1: 'ValidationError',
                           text2: 'Something went wrong, try again later.',
                         });
+                        setIsLoading(false);
                       }
                     })
-                    .catch();
+                    setIsLoading(false);
                   // navigation.navigate('login');
                 })
                 .catch((err) => {
@@ -71,6 +79,7 @@ const CreatePassword = () => {
                     text1: 'ValidationError',
                     text2: err.message,
                   });
+                  setIsLoading(false);
                 });
             }}
           >
@@ -96,11 +105,20 @@ const CreatePassword = () => {
                     onChangeText={handleChange('confirmPassword')}
                   />
                 </InputContainer>
-                <FullButton onPress={handleSubmit}>
-                  <CenterContent>
-                    <ButtonText>Create</ButtonText>
-                  </CenterContent>
-                </FullButton>
+                {isLoading?(
+                  <FullDisableButton>
+                    <CenterContent>
+                      <ActivityIndicator />
+                    </CenterContent>
+                  </FullDisableButton>
+                ):(
+                  
+                  <FullButton onPress={handleSubmit}>
+                    <CenterContent>
+                      <ButtonText>Create</ButtonText>
+                    </CenterContent>
+                  </FullButton>
+                )}
               </>
             )}
           </Formik>
