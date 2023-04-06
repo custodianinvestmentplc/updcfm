@@ -70,6 +70,7 @@ const GetStarted = ({ navigation }: any) => {
           onPress={() => {
             setIsLoading(!isLoading);
             navigation.navigate("verify-email");
+            setIsLoading(!isLoading);
           }}
         >
           {isLoading ? (

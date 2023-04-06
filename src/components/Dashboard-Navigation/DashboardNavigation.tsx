@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 
 const DashboardNavigation = () => {
   return (
-    <>
+    <Container>
       <TopNavbar />
       <Tab.Navigator
         initialRouteName='dashboard'
@@ -220,7 +220,7 @@ const DashboardNavigation = () => {
           }}
         />
       </Tab.Navigator>
-    </>
+    </Container>
   );
 };
 

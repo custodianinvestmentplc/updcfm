@@ -32,12 +32,7 @@ const Dashboard = () => {
 
   return (
     <Container background='#fff'>
-      {Platform.OS === "ios" ? (
-        <Container height='20'></Container>
-      ) : (
-        <StatusBarExpo backgroundColor={primary} style='light' />
-      )}
-      
+          
       <Container
         background='transparent'
         height='60px'

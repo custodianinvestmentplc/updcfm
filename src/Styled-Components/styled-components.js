@@ -79,6 +79,25 @@ export const HalfScreen = styled.View`
 
 export const Position = styled.View`
   position: ${(props) => (props.position ? props.position : null)};
+  ${(props) => (props.height ? `height: ${props.height}` : null)}
+  ${(props) => (props.width ? `width: ${props.width}` : null)}
+  ${(props) => (props.background ? `background: ${props.background}` : null)}
+  ${(props) => (props.top ? `top: ${props.top}` : null)};
+  ${(props) => (props.bottom ? `bottom: ${props.bottom}` : null)};
+  ${(props) => (props.left ? `left:  ${props.left}` : null)};
+  ${(props) => (props.right ? `right: ${props.right}` : null)};
+  ${(props) => (props.px ? `padding-left: ${props.px}` : null)};
+  ${(props) => (props.px ? `padding-right: ${props.px}` : null)};
+  ${(props) => (props.py ? `padding-top: ${props.py}` : null)};
+  ${(props) => (props.py ? `padding-bottom: ${props.py}` : null)};
+  ${(props) => (props.z ? `z-index: ${props.z}` : null)};
+`;
+
+export const Touchable = styled.TouchableOpacity`
+  position: ${(props) => (props.position ? props.position : null)};
+  ${(props) => (props.height ? `height: ${props.height}` : null)}
+  ${(props) => (props.width ? `width: ${props.width}` : null)}
+  ${(props) => (props.background ? `background: ${props.background}` : null)}
   ${(props) => (props.top ? `top: ${props.top}` : null)};
   ${(props) => (props.bottom ? `bottom: ${props.bottom}` : null)};
   ${(props) => (props.left ? `left:  ${props.left}` : null)};
@@ -167,5 +186,5 @@ export const FlexContainer = styled.View`
   ${(props) =>
     props.brbr ? `border-bottom-right-radius: ${props.brbr}` : null};
   ${(props) => (props.overflow ? `overflow: hidden` : null)};
-  // overflow:${props => props.overflow}
+  // overflow:${(props) => props.overflow}
 `;
