@@ -15,7 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const TopNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const statusBarHeight = Platform.OS === "ios" ? 20 : StatusBar.currentHeight;
+  const statusBarHeight = Platform.OS === "ios" ? 20 : 0;
   const navigation = useNavigation();
   return (
     <>
@@ -79,7 +79,7 @@ const TopNavbar = () => {
             setIsOpen(false);
           }}
         >
-          <Position position='absolute' top='80px' right='20px'>
+          <Position position='absolute' top='60px' right='20px'>
             <Container
               height='100'
               width='150'
