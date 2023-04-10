@@ -13,7 +13,7 @@ const KeyboardAvoidingWrapper = ({ children }: any) => {
       style={{ flex: 1 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <Container>
+      <Container background='transparent'>
         <ScrollView>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             {children}

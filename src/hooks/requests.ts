@@ -27,6 +27,31 @@ export const handleCreatePassword = async (
   return data;
 };
 
+export const handleCreateInterventionJob = async (
+  url: string,
+  payload: any,
+  residentId: string
+) => {
+  // const header = {
+  //   headers: {
+  //     authorization: `Bearer ${password}`,
+  //   },
+  // };
+  const body = {
+    categoryId: payload.jobId,
+    issueId: payload.issueId,
+    location: payload.location,
+    shortDescription: payload.shortDescription,
+    residentId: residentId,
+  };
+
+  const res = await axios.post(BASE_URL + url, body);
+
+  const { data, status } = res;
+
+  return status;
+};
+
 export const handleActivationPin = (
   url: string,
   email: string,

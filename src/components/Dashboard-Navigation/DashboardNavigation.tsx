@@ -6,15 +6,21 @@ import {
 } from "@expo/vector-icons";
 import { Container } from "../../Styled-Components/styled-components";
 import Dashboard from "./Screens/Dashboard/Dashboard";
+import { useNavigationState } from "@react-navigation/native";
 
 import { Colors } from "../../Colors/Colors";
 import TopNavbar from "../Top-Navbar/TopNavbar";
+import ServiceRequest from "./Screens/Sevice-Request/Screens/ServiceRequest";
 
 const { primary } = Colors;
 
 const Tab = createBottomTabNavigator();
 
 const DashboardNavigation = () => {
+  const routes = useNavigationState((state) => state.routes);
+  const index = routes[0].state?.index;
+  console.log(routes[0].state);
+  console.log();
   return (
     <Container>
       <TopNavbar />
@@ -145,7 +151,7 @@ const DashboardNavigation = () => {
         />
         <Tab.Screen
           name='setting'
-          component={Dashboard}
+          component={ServiceRequest}
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (

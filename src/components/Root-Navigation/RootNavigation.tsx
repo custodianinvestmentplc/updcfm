@@ -13,6 +13,7 @@ import VerifyEmail from "../Verify-Email/VerifyEmail";
 import GetStarted from "../Get-Started/GetStarted";
 import { setResident } from "../../redux/slices/navslice";
 import AppLoading from "expo-app-loading";
+import ServiceRequestForm from "../Dashboard-Navigation/Screens/Sevice-Request/Screens/ServiceRequestForm";
 
 const Stack = createNativeStackNavigator();
 
@@ -89,6 +90,11 @@ export default function RootNavigation() {
         <Stack.Screen
           name='dashboard'
           component={DashboardNavigation}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='service-request-form'
+          component={ServiceRequestForm}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

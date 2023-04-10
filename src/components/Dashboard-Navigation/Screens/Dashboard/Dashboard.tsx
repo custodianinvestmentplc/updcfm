@@ -1,11 +1,12 @@
 import { Feather, Ionicons } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StatusBar as StatusBarExpo } from "expo-status-bar";
 import { Image, Platform, StatusBar } from "react-native";
 import { Colors } from "../../../../Colors/Colors";
 import {
   Container,
   FlexContainer,
+  Link,
   Paragraph,
 } from "../../../../Styled-Components/styled-components";
 import logo from "../../../../Icons/logo.png";
@@ -14,25 +15,25 @@ import slider from "../../../../Icons/updc__slider.jpg";
 import payment from "../../../../Icons/payment.png";
 import service from "../../../../Icons/serviceRequest.png";
 import key from "../../../../Icons/key.png";
-import { selectResident } from "../../../../redux/slices/navslice";
+import { selectResident, setResident } from "../../../../redux/slices/navslice";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const { primary } = Colors;
 
-const Dashboard = () => {
-  const [resident, setResident] = useState<any>("");
+const Dashboard = ({ navigation }: any) => {
+  const [resident, setResiden] = useState<any>("");
   const statusBarHeight = Platform.OS === "ios" ? 20 : StatusBar.currentHeight;
-
+  const dispatch = useDispatch();
   useEffect(() => {
     AsyncStorage.getItem("userData").then((result: any) => {
-      setResident(JSON.parse(result));
+      setResiden(JSON.parse(result));
+      dispatch(setResident(JSON.parse(result)));
     });
   });
 
   return (
     <Container background='#fff'>
-          
       <Container
         background='transparent'
         height='60px'
@@ -103,28 +104,35 @@ const Dashboard = () => {
             </FlexContainer>
           </Container>
           <Container height='150px' width='150px' borderRadius='10px'>
-            <FlexContainer
-              flexDirection='column'
-              pl='10px'
-              pr='10px'
-              pt='10px'
-              pb='10px'
-              overflow
-            >
-              <Container
-                height='100px'
-                items='center'
-                justify='center'
+            <Link onPress={() => navigation.navigate("setting")}>
+              <FlexContainer
+                flexDirection='column'
+                pl='10px'
+                pr='10px'
+                pt='10px'
+                pb='10px'
                 overflow
               >
-                <Image source={service} resizeMode='contain' />
-              </Container>
-              <Container height='30px' items='center' justify='center' overflow>
-                <Paragraph alignText='center' fontSize='18px' color='#fff'>
-                  Service Request
-                </Paragraph>
-              </Container>
-            </FlexContainer>
+                <Container
+                  height='100px'
+                  items='center'
+                  justify='center'
+                  overflow
+                >
+                  <Image source={service} resizeMode='contain' />
+                </Container>
+                <Container
+                  height='30px'
+                  items='center'
+                  justify='center'
+                  overflow
+                >
+                  <Paragraph alignText='center' fontSize='18px' color='#fff'>
+                    Service Request
+                  </Paragraph>
+                </Container>
+              </FlexContainer>
+            </Link>
           </Container>
         </FlexContainer>
         <FlexContainer justify='space-between' mt='10px'>

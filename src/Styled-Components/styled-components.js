@@ -49,7 +49,16 @@ export const Container = styled.View`
       : null}
 `;
 
-export const Link = styled.TouchableOpacity``;
+export const Link = styled.TouchableOpacity`
+  margin-top: ${(props) => (props.mt ? props.mt : 0)};
+  margin-left: ${(props) => (props.ml ? props.ml : 0)};
+  margin-bottom: ${(props) => (props.mb ? props.mb : 0)};
+  margin-right: ${(props) => (props.mr ? props.mr : 0)};
+  padding-top: ${(props) => (props.pt ? props.pt : 0)};
+  padding-left: ${(props) => (props.pl ? props.pl : 0)};
+  padding-bottom: ${(props) => (props.pb ? props.pb : 0)};
+  padding-right: ${(props) => (props.pr ? props.pr : 0)};
+`;
 
 export const Paragraph = styled.Text`
   font-size: ${(props) => (props.fontSize ? props.fontSize : 16)};
@@ -134,6 +143,7 @@ export const Input = styled.TextInput`
   width: ${(props) => (props.width ? props.width : "100%")};
   ${(props) => (props.align ? `text-align: ${props.align}` : null)};
   background: ${(props) => (props.background ? props.background : primary)};
+  ${(props) => (props.border ? `border-width:${props.border}` : null)}
   ${(props) => (props.mt ? `margin-top: ${props.mt}` : null)};
   ${(props) => (props.me ? `margin-right: ${props.me}` : null)};
   ${(props) => (props.mb ? `margin-bottom: ${props.mb}` : null)};
