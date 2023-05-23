@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useRoute } from "@react-navigation/native";
 import {
   Ionicons,
   MaterialCommunityIcons,
@@ -11,21 +12,21 @@ import { useNavigationState } from "@react-navigation/native";
 import { Colors } from "../../Colors/Colors";
 import TopNavbar from "../Top-Navbar/TopNavbar";
 import ServiceRequest from "./Screens/Sevice-Request/Screens/ServiceRequest";
+import BillsAndUtility from "./Screens/BillsAndUtility/Biils-and-Untility";
+import AccessControl from "./Screens/Access-Control/Access-Control";
+import HelpDesk from "./Screens/Help-Desk/Help-Desk";
 
 const { primary } = Colors;
 
 const Tab = createBottomTabNavigator();
 
 const DashboardNavigation = () => {
-  const routes = useNavigationState((state) => state.routes);
-  const index = routes[0].state?.index;
-  console.log(routes[0].state);
-  console.log();
+  const route = useRoute();
   return (
     <Container>
-      <TopNavbar />
       <Tab.Navigator
-        initialRouteName='dashboard'
+        initialRouteName="dashboard"
+        backBehavior="history"
         screenOptions={{
           tabBarShowLabel: false,
           tabBarStyle: [
@@ -42,38 +43,38 @@ const DashboardNavigation = () => {
         }}
       >
         <Tab.Screen
-          name='payment'
-          component={Dashboard}
+          name="payment"
+          component={BillsAndUtility}
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <>
                 {focused ? (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
-                    background='transparent'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
+                    background="transparent"
                   >
                     <MaterialCommunityIcons
-                      name='script'
+                      name="script"
                       color={primary}
                       size={25}
                     />
                   </Container>
                 ) : (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
-                    background='transparent'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
+                    background="transparent"
                   >
                     <MaterialCommunityIcons
-                      name='script-outline'
+                      name="script-outline"
                       color={"#9c9c9c"}
                       size={25}
                     />
@@ -84,33 +85,33 @@ const DashboardNavigation = () => {
           }}
         />
         <Tab.Screen
-          name='access-controll'
-          component={Dashboard}
+          name="access-control"
+          component={AccessControl}
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <>
                 {focused ? (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
-                    background='transparent'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
+                    background="transparent"
                   >
-                    <Ionicons name='key' color={primary} size={25} />
+                    <Ionicons name="key" color={primary} size={25} />
                   </Container>
                 ) : (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
-                    background='transparent'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
+                    background="transparent"
                   >
-                    <Ionicons name='key-outline' color={"#9c9c9c"} size={25} />
+                    <Ionicons name="key-outline" color={"#9c9c9c"} size={25} />
                   </Container>
                 )}
               </>
@@ -118,7 +119,7 @@ const DashboardNavigation = () => {
           }}
         />
         <Tab.Screen
-          name='dashboard'
+          name="dashboard"
           component={Dashboard}
           options={{
             headerShown: false,
@@ -126,23 +127,23 @@ const DashboardNavigation = () => {
               <>
                 {focused ? (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
                   >
-                    <Ionicons name='home' color={"#fff"} size={25} />
+                    <Ionicons name="home" color={"#fff"} size={25} />
                   </Container>
                 ) : (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
                   >
-                    <Ionicons name='home-outline' color={"#fff"} size={25} />
+                    <Ionicons name="home-outline" color={"#fff"} size={25} />
                   </Container>
                 )}
               </>
@@ -150,7 +151,7 @@ const DashboardNavigation = () => {
           }}
         />
         <Tab.Screen
-          name='setting'
+          name="setting"
           component={ServiceRequest}
           options={{
             headerShown: false,
@@ -158,30 +159,30 @@ const DashboardNavigation = () => {
               <>
                 {focused ? (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
-                    background='transparent'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
+                    background="transparent"
                   >
                     <MaterialCommunityIcons
-                      name='tools'
+                      name="tools"
                       color={primary}
                       size={25}
                     />
                   </Container>
                 ) : (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
-                    background='transparent'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
+                    background="transparent"
                   >
                     <MaterialCommunityIcons
-                      name='tools'
+                      name="tools"
                       color={"#9c9c9c"}
                       size={25}
                     />
@@ -192,33 +193,33 @@ const DashboardNavigation = () => {
           }}
         />
         <Tab.Screen
-          name='help-desk'
-          component={Dashboard}
+          name="help-desk"
+          component={HelpDesk}
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <>
                 {focused ? (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
-                    background='transparent'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
+                    background="transparent"
                   >
-                    <FontAwesome5 name='headset' color={primary} size={25} />
+                    <FontAwesome5 name="headset" color={primary} size={25} />
                   </Container>
                 ) : (
                   <Container
-                    height='40px'
-                    width='40px'
-                    borderRadius='10'
-                    items='center'
-                    justify='center'
-                    background='transparent'
+                    height="40px"
+                    width="40px"
+                    borderRadius="10"
+                    items="center"
+                    justify="center"
+                    background="transparent"
                   >
-                    <FontAwesome5 name='headset' color={"#9c9c9c"} size={25} />
+                    <FontAwesome5 name="headset" color={"#9c9c9c"} size={25} />
                   </Container>
                 )}
               </>

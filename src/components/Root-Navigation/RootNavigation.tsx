@@ -14,6 +14,7 @@ import GetStarted from "../Get-Started/GetStarted";
 import { setResident } from "../../redux/slices/navslice";
 import AppLoading from "expo-app-loading";
 import ServiceRequestForm from "../Dashboard-Navigation/Screens/Sevice-Request/Screens/ServiceRequestForm";
+import ForgetPassword from "../Forget-Password/ForgetPassword";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,11 +33,9 @@ export default function RootNavigation() {
           const resident = JSON.parse(value);
           setUserData(resident);
           setRouteName("dashboard");
-          console.log("User Data: " + value);
         } else {
           setUserData(value);
           setRouteName("get-started");
-          console.log("No Value: " + value);
         }
       } catch (error) {
         console.warn(error);
@@ -58,42 +57,46 @@ export default function RootNavigation() {
     return null;
   }
 
-  console.log("I am here => " + JSON.stringify(userData));
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={routeName}>
         <Stack.Screen
-          name='get-started'
+          name="get-started"
           component={GetStarted}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name='verify-email'
+          name="verify-email"
           component={VerifyEmail}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name='verify-passcode'
+          name="verify-passcode"
           component={VerifyPasscode}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name='create-password'
+          name="create-password"
           component={CreatePassword}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name='login'
+          name="forget-password"
+          component={ForgetPassword}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="login"
           component={Login}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name='dashboard'
+          name="home"
           component={DashboardNavigation}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name='service-request-form'
+          name="service-request-form"
           component={ServiceRequestForm}
           options={{ headerShown: false }}
         />

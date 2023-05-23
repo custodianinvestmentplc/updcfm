@@ -84,3 +84,14 @@ export const handleLogin = async (
 
   return data;
 };
+
+export const handleForgetPassword = async (url: string, email: string) => {
+  const res = await axios.post(BASE_URL + url, { email });
+  console.log(res);
+  const { data, status } = res;
+
+  return {
+    statusCode: status,
+    data,
+  };
+};

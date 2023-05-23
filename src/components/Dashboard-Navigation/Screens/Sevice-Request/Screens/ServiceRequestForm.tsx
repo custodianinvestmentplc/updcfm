@@ -14,6 +14,8 @@ import { selectResident } from "../../../../../redux/slices/navslice";
 import KeyboardAvoidingWrapper from "../../../../Keyboard-Avoiding-View-wrapper/KeyboardAvoidingWrapper";
 import { handleCreateInterventionJob } from "../../../../../hooks/requests";
 import Toast from "react-native-toast-message";
+import TopNavbar from "../../../../Top-Navbar/TopNavbar";
+import { Picker } from "@react-native-picker/picker";
 
 const ServiceRequestForm = () => {
   const statusBarHeight = Platform.OS === "ios" ? 20 : 0;
@@ -22,16 +24,15 @@ const ServiceRequestForm = () => {
   return (
     <KeyboardAvoidingWrapper>
       <Container>
-        <Container mt={statusBarHeight} background='#fff' px='10px'>
-          <Paragraph mt='10px' fontSize='20px'>
-            Intervention Job
-          </Paragraph>
+        <TopNavbar />
+        <Container background="#fff" px="10px">
           <Formik
             initialValues={{
               jobId: "",
               issueId: "",
               location: "",
               shortDescription: "",
+              picker: "",
             }}
             onSubmit={async (values) => {
               console.log("values " + values);
@@ -56,28 +57,28 @@ const ServiceRequestForm = () => {
             }}
           >
             {({ handleSubmit, handleBlur, handleChange, values }) => (
-              <Container background='transparent'>
-                <Container background='transparent' mt='10px'>
+              <Container background="transparent">
+                <Container background="transparent" mt="10px">
                   <Dropdown
-                    placeholder='Select a Job'
+                    placeholder="Select a Job"
                     options={[{ name: "Plumbing" }, { name: "Electricial" }]}
-                    optionLabel='name'
-                    optionValue='name'
+                    optionLabel="name"
+                    optionValue="name"
                     onValueChange={(value: any) => (values.jobId = value)}
                   />
                   <Dropdown
-                    placeholder='Select a issue'
+                    placeholder="Select a issue"
                     options={[
                       { name: "Leakage" },
                       { name: "Broken" },
                       { name: "Others" },
                     ]}
-                    optionLabel='name'
-                    optionValue='name'
+                    optionLabel="name"
+                    optionValue="name"
                     onValueChange={(value: any) => (values.issueId = value)}
                   />
                   <Dropdown
-                    placeholder='Select a location'
+                    placeholder="Select a location"
                     options={[
                       { name: "Kitchen" },
                       { name: "Bedroom" },
@@ -85,23 +86,23 @@ const ServiceRequestForm = () => {
                       { name: "Visitors Room" },
                       { name: "Others" },
                     ]}
-                    optionLabel='name'
-                    optionValue='name'
+                    optionLabel="name"
+                    optionValue="name"
                     onValueChange={(value: any) => {
                       values.location = value;
                     }}
                   />
                   <Input
-                    border='1'
-                    background='#fff'
-                    mb='20px'
-                    placeholder='Short Description'
-                    pl='20px'
-                    pr='20px'
-                    pt='10px'
-                    pb='10px'
+                    border="1"
+                    background="#fff"
+                    mb="20px"
+                    placeholder="Short Description"
+                    pl="20px"
+                    pr="20px"
+                    pt="10px"
+                    pb="10px"
                     multiline={true}
-                    borderRadius='10px'
+                    borderRadius="10px"
                     onBlur={handleBlur("shortDescription")}
                     onChangeText={handleChange("shortDescription")}
                   />
@@ -114,13 +115,13 @@ const ServiceRequestForm = () => {
                     </Button>
                   ) : (
                     <Container
-                      background='#D9D9D9'
-                      height='50px'
-                      borderRadius='10px'
-                      items='center'
-                      justify='center'
+                      background="#D9D9D9"
+                      height="50px"
+                      borderRadius="10px"
+                      items="center"
+                      justify="center"
                     >
-                      <Paragraph color='#fff'>Submit</Paragraph>
+                      <Paragraph color="#fff">Submit</Paragraph>
                     </Container>
                   )}
                 </Container>

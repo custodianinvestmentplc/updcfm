@@ -5,7 +5,7 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
-import { Fontisto, Octicons } from "@expo/vector-icons";
+import { Fontisto, Octicons, AntDesign } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,9 @@ import {
   Container,
   FlexContainer,
   Input,
+  Link,
   Paragraph,
+  Position,
 } from "../../Styled-Components/styled-components";
 import KeyboardAvoidingWrapper from "../Keyboard-Avoiding-View-wrapper/KeyboardAvoidingWrapper";
 import Icon from "../../Icons/Houses-pana.png";
@@ -50,8 +52,8 @@ const Login = ({ navigation }: any) => {
   }, [storedEmail]);
   return (
     <KeyboardAvoidingWrapper>
-      <Container height={height} background='#fff'>
-        <Container flex={1} items='center' background='#fff'>
+      <Container height={height} background="#fff">
+        <Container flex={1} items="center" background="#fff">
           <Image
             source={Icon}
             style={{
@@ -63,13 +65,32 @@ const Login = ({ navigation }: any) => {
               resizeMode: "cover",
             }}
           />
+          <Position position="absolute" top="20px" left="10px">
+            <Link
+              onPress={() => {
+                navigation.navigate("verify-email");
+              }}
+            >
+              <Container
+                height="50"
+                width="50"
+                background="#fff"
+                borderRadius="50"
+                shadow
+                items="center"
+                justify="center"
+              >
+                <AntDesign name="left" size={20} />
+              </Container>
+            </Link>
+          </Position>
         </Container>
-        <Container flex={1} pl='10px' pr='10px' background='#fff'>
-          <Container mt='-40px' background='transparent'>
-            <Paragraph fontSize='40px' color='#fff'>
+        <Container flex={1} pl="10px" pr="10px" background="#fff">
+          <Container mt="-40px" background="transparent">
+            <Paragraph fontSize="40px" color="#fff">
               Welcome Back
             </Paragraph>
-            <Paragraph fontSize='25px' color={primary}>
+            <Paragraph fontSize="20px" color={primary}>
               Login to your account
             </Paragraph>
             <Formik
@@ -93,7 +114,7 @@ const Login = ({ navigation }: any) => {
                         "userData",
                         JSON.stringify(data.resident)
                       );
-                      navigation.navigate("dashboard");
+                      navigation.navigate("home");
                     }
                   } else {
                     setIsLoading(false);
@@ -113,39 +134,39 @@ const Login = ({ navigation }: any) => {
               }}
             >
               {({ handleBlur, handleChange, handleSubmit, values }) => (
-                <Container mt='20px' background='transparent' height='100%'>
+                <Container mt="20px" background="transparent" height="100%">
                   <Container
-                    height='50px'
-                    mb='20px'
-                    background='red'
-                    brtl='10px'
-                    brbl='10px'
-                    brtr='10px'
-                    brbr='10px'
-                    pl='0'
-                    pr='50px'
+                    height="50px"
+                    mb="20px"
+                    background="red"
+                    brtl="10px"
+                    brbl="10px"
+                    brtr="10px"
+                    brbr="10px"
+                    pl="0"
+                    pr="50px"
                     shadow
                   >
                     <FlexContainer>
                       <Container
-                        height='50px'
-                        width='50px'
-                        background='#fff'
-                        brbl='10px'
-                        brtl='10px'
-                        items='center'
-                        justify='center'
+                        height="50px"
+                        width="50px"
+                        background="#fff"
+                        brbl="10px"
+                        brtl="10px"
+                        items="center"
+                        justify="center"
                       >
-                        <Fontisto name='email' color='#9c9c9c' size={20} />
+                        <Fontisto name="email" color="#9c9c9c" size={20} />
                       </Container>
                       <Input
                         onBlur={handleBlur("email")}
                         onChangeText={handleChange("email")}
-                        background='#fff'
-                        pl='10px'
-                        brbr='10px'
-                        brtr='10px'
-                        placeholder='johndoe@example.com'
+                        background="#fff"
+                        pl="10px"
+                        brbr="10px"
+                        brtr="10px"
+                        placeholder="johndoe@example.com"
                         defaultValue={values.email}
                         value={values.email}
                         // value={values.email && storedEmail}
@@ -153,54 +174,60 @@ const Login = ({ navigation }: any) => {
                     </FlexContainer>
                   </Container>
                   <Container
-                    height='50px'
-                    mb='20px'
-                    background='red'
-                    brtl='10px'
-                    brbl='10px'
-                    brtr='10px'
-                    brbr='10px'
-                    pl='0'
-                    pr='50px'
+                    height="50px"
+                    mb="20px"
+                    background="red"
+                    brtl="10px"
+                    brbl="10px"
+                    brtr="10px"
+                    brbr="10px"
+                    pl="0"
+                    pr="50px"
                     shadow
                   >
                     <FlexContainer>
                       <Container
-                        height='50px'
-                        width='50px'
-                        background='#fff'
-                        brbl='10px'
-                        brtl='10px'
-                        justify='center'
-                        items='center'
+                        height="50px"
+                        width="50px"
+                        background="#fff"
+                        brbl="10px"
+                        brtl="10px"
+                        justify="center"
+                        items="center"
                       >
-                        <Octicons name='lock' color='#9c9c9c' size={20} />
+                        <Octicons name="lock" color="#9c9c9c" size={20} />
                       </Container>
                       <Input
                         secureTextEntry={true}
                         onBlur={handleBlur("password")}
                         onChangeText={handleChange("password")}
-                        background='#fff'
-                        pl='10px'
-                        brbr='10px'
-                        brtr='10px'
-                        placeholder='password'
+                        background="#fff"
+                        pl="10px"
+                        brbr="10px"
+                        brtr="10px"
+                        placeholder="password"
                       />
                     </FlexContainer>
                   </Container>
                   <Container
-                    height='20px'
-                    mb='20px'
-                    background='#fff'
-                    items='flex-end'
+                    height="20px"
+                    mb="20px"
+                    background="#fff"
+                    items="flex-end"
                   >
-                    <Paragraph color={primary} align='right'>
-                      Forget Password?
-                    </Paragraph>
+                    <Link
+                      onPress={() => {
+                        navigation.navigate("forget-password");
+                      }}
+                    >
+                      <Paragraph color={primary} align="right">
+                        Forget Password?
+                      </Paragraph>
+                    </Link>
                   </Container>
                   <Button onPress={handleSubmit}>
                     {isLoading ? (
-                      <ActivityIndicator color='#fff' />
+                      <ActivityIndicator color="#fff" />
                     ) : (
                       <ButtonText>Login</ButtonText>
                     )}

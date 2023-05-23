@@ -15,10 +15,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.kraneabel.updcfm",
-      "buildNumber": "4"
+      "buildNumber": "7"
     },
     "android": {
-      "versionCode": "3",
+      "versionCode": "6",
       "adaptiveIcon": {
         "foregroundImage": "./assets/playstore-icon.png",
         "backgroundColor": "#A73439"

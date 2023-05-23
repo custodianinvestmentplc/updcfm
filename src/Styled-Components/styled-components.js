@@ -7,6 +7,8 @@ const width = Dimensions.get("window").width;
 
 const { primary } = Colors;
 
+
+
 export const Container = styled.View`
   ${(props) => (props.flex ? `flex: ${props.flex}` : null)};
   background: ${(props) => (props.background ? props.background : primary)}
@@ -119,6 +121,21 @@ export const Touchable = styled.TouchableOpacity`
 `;
 
 export const Button = styled.TouchableOpacity`
+  height: ${(props) => (props.height ? props.height : "50px")};
+  width: ${(props) => (props.width ? props.width : "100%")};
+  background: ${(props) => (props.background ? props.background : primary)};
+  ${(props) => (props.mx ? `margin: auto ${props.mx}` : null)};
+  ${(props) => (props.my ? `margin: ${props.my} auto` : null)};
+  ${(props) => (props.px ? `padding-left: ${props.px}` : null)};
+  ${(props) => (props.px ? `padding-right: ${props.px}` : null)};
+  ${(props) => (props.py ? `padding-top: ${props.py}` : null)};
+  ${(props) => (props.py ? `padding-bottom: ${props.py}` : null)};
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+`;
+
+export const DisableButton = styled.View`
   height: ${(props) => (props.height ? props.height : "50px")};
   width: ${(props) => (props.width ? props.width : "100%")};
   background: ${(props) => (props.background ? props.background : primary)};
