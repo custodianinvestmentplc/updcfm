@@ -13,12 +13,12 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.kraneabel.updcfm",
-      "buildNumber": "7"
+      "buildNumber": "8"
     },
     "android": {
-      "versionCode": "6",
+      "versionCode": "7",
       "adaptiveIcon": {
         "foregroundImage": "./assets/playstore-icon.png",
         "backgroundColor": "#A73439"
